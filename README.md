@@ -8,7 +8,8 @@ that largely offset the gains of asynchronous computations.
 
 The built-in fault-tolerant component in Faiter utilizes data on surviving machines to recover data on failed machines, rather than  checkpoints. Additionally, a novel asynchronous checkpointing method is introduced to further boost the recovery efficiency at the price  of nearly zero overhead. Faiter provides simple APIs to facilitate tolerating failures for asynchronous computations. Also, Faiter  performs load balancing on recovery by re-assigning lost data onto multiple machines. 
 
-The Faiter project started at UMASS Amherst in 2015. Faiter is a C++ framework implemented on top of [Maiter](https://code.google.com/archive/p/maiter/).
+The Faiter project started at UMASS Amherst in 2015. Faiter is a C++ framework implemented on top of [Maiter](https://code.google.com/archive/p/maiter/). For more details, please refer to our paper [A Fault-Tolerant Framework for Asynchronous
+Iterative Computations in Cloud Environments](http://dl.acm.org/citation.cfm?id=2987552) (Zhigang Wang and Lixin Gao et al.). 
  
 
 ##2. Quick Start
