@@ -3,18 +3,13 @@
 Faiter is a fault-tolerant framework for asynchronous iterative computations in cloud environments.
 
 ##1. Introduction
+Faiter is a prototype system with simple yet efficient fault-tolerance components for distributed asynchronous iterative computation  engines. Many well-known algorithms are iterative in nature, like PageRank, Penalized Hitting Probability, and Katz Metric. Asynchronous  computation model can significantly improve the performance of these algorithms in distributed environments. However, it is challenging  to recover from failures in such a model, since a typical checkpointing based appoach requires many expensive synchronization barriers 
+that largely offset the gains of asynchronous computations. 
 
+The built-in fault-tolerant component in Faiter utilizes data on surviving machines to recover data on failed machines, rather than  checkpoints. Additionally, a novel asynchronous checkpointing method is introduced to further boost the recovery efficiency at the price  of nearly zero overhead. Faiter provides simple APIs to facilitate tolerating failures for asynchronous computations. Also, Faiter  performs load balancing on recovery by re-assigning lost data onto multiple machines. 
 
-The Faiter project started at UMASS Amherst in 2015. Faiter is a C++ framework implemented on top of Maiter.
-
-###1.1 Features of Faiter  
-* ___Block-centric pull mechanism (b-pull):___ I/O accesses are shifted from receiver sides where messages are written/read by push to sender sides where graph data are read by pull. The cost of random reads regarding vertices in existing pull-based approaches is considerable. Thus, a novel block-centric pull technique is used to optimize the I/O-efficiency, as well as reducing the communication cost caused by sending pull requests.  
-* ___VE-BLOCK storage:___ A disk-resident block-centric graph structure is designed for efficient data accesses in `b-pull`. Graph data are separated into vertices and edges. Vertices are divided into several `VBlocks`. Accordingly, edges are partitioned into multiple `EBlocks`. Messages are pulled in `VBlocks`.    
-* ___Hybrid engine:___ A seamless switching mechanism and a prominent performance prediction method are proposed to guarantee the efficiency when switching between push and `b-pull`.
-
-###1.2 Team  
-* [Yu Gu](http://www.ise.neu.edu.cn/?page_id=1285&tid=7473), Associate Professor, Northeastern University, Email: guyu@mail.neu.edu.cn    
-* [Zhigang Wang](https://sites.google.com/site/wzg1210/), Ph.D. student, Northeastern University, Email: wangzhiganglab@gmail.com  
+The Faiter project started at UMASS Amherst in 2015. Faiter is a C++ framework implemented on top of [Maiter](https://code.google.com/archive/p/maiter/).
+ 
 
 ##2. Quick Start
 This section describes how to configurate, compile and then deploy HybridGraph on a cluster consisting of three physical machines running Red Hat Enterprise Linux 6.4 32/64 bit (one master and two slaves/workers, called `master`, `slave1`, and `slave2`). Before that, Apache Hadoop should be installed on the cluster, which is beyond the scope of this document. 
