@@ -17,7 +17,7 @@ Before running Faiter, you need to download [faiter.tar.gz](https://github.com/H
 
 PageRank and PHP, are provided as two example algorithms. Before running them, you need to split input data into multiple partitions and assign partitions onto different machines. Click [here](https://code.google.com/archive/p/maiter/wikis/Guidance.wiki) to know how to prepare input data. 
 
-Taking PageRank as example, you can specify the following parameters in "pr.sh" to run it.
+Taking PageRank as example, you can specify the following parameters in "pr.sh" to run it.  
 "ALGORITHM=Pagerank  
 WORKERS=?  
 GRAPH=?  
@@ -32,6 +32,8 @@ FAULTTIME=?
 VERTEXNUM=?  
 FAILEDWORKERNUM=?  
 CASCADING=?"  
+
+Specifically, "CKINTERVAL" indicates the interval between two consecutive asynchronous checkpoints (milliseconds). "CKINTERVAL=-1" means disabling checkpointing. "FAULTTIME" specifies when a failure happens and "FAILEDWORKERNUM" tells the system how many machines will be marked as failed workers. Similarly, "-1" means no failure happens. When "CASCADING=1", cascading failures will be simulated. When running PHP in "php.sh", another parameter "SOURCE" is required to set the source vertex id.
 
 ###2.1 Requirements
 * Apache hadoop-0.20.2 (distributed storage service)  
