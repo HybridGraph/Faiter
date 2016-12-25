@@ -15,11 +15,23 @@ Iterative Computations in Cloud Environments](http://dl.acm.org/citation.cfm?id=
 ##2. Quick Start
 Before running Faiter, you need to download [faiter.tar.gz](https://github.com/HybridGraph/Faiter/blob/master/faiter.tar.gz) and deploy it. You can click [here](https://code.google.com/archive/p/maiter/wikis/Guidance.wiki) for help.
 
-PageRank and PHP, are provided as two example algorithms. Before running them, you need to split input data into multiple partitions and assign partitions onto different machines. Click [here](https://code.google.com/archive/p/maiter/wikis/Guidance.wiki) to know how to prepare input data.
+PageRank and PHP, are provided as two example algorithms. Before running them, you need to split input data into multiple partitions and assign partitions onto different machines. Click [here](https://code.google.com/archive/p/maiter/wikis/Guidance.wiki) to know how to prepare input data. 
 
-Then type the following command on any worker machine to run the algorithm (e.g., the SumProduct verion of Belief Propagation).
-
-"./prom --runner=SumProduct --workers=? --graph_dir=? --result_dir=? --num_nodes=? --snapshot_interval=? --portion=? --termcheck_threshold=?". Replace the question mark with your settings.
+Taking PageRank as example, you can specify the following parameters in "pr.sh" to run it.
+"ALGORITHM=Pagerank  
+WORKERS=?  
+GRAPH=?  
+RESULT=?  
+NODES=?  
+SNAPSHOT=?  
+TERMTHRESH=?  
+BUFMSG=?  
+PORTION=?  
+CKINTERVAL=?  
+FAULTTIME=?  
+VERTEXNUM=?  
+FAILEDWORKERNUM=?  
+CASCADING=?"  
 
 ###2.1 Requirements
 * Apache hadoop-0.20.2 (distributed storage service)  
