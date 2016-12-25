@@ -3,7 +3,7 @@
 Faiter is a fault-tolerant framework for asynchronous iterative computations in cloud environments.
 
 ##1. Introduction
-Faiter is a prototype system with simple yet efficient fault-tolerance components for distributed asynchronous iterative computation  engines. Many well-known algorithms are iterative in nature, like PageRank, Penalized Hitting Probability, and Katz Metric. Asynchronous  computation model can significantly improve the performance of these algorithms in distributed environments. However, it is challenging  to recover from failures in such a model, since a typical checkpointing based appoach requires many expensive synchronization barriers 
+Faiter is a prototype system with simple yet efficient fault-tolerance components for distributed asynchronous iterative computation  engines. Many well-known algorithms are iterative in nature, like PageRank, Penalized Hitting Probability (PHP), and Katz Metric.  Asynchronous  computation model can significantly improve the performance of these algorithms in distributed environments. However, it is challenging  to recover from failures in such a model, since a typical checkpointing based appoach requires many expensive synchronization barriers 
 that largely offset the gains of asynchronous computations. 
 
 The built-in fault-tolerant component in Faiter utilizes data on surviving machines to recover data on failed machines, rather than  checkpoints. Additionally, a novel asynchronous checkpointing method is introduced to further boost the recovery efficiency at the price  of nearly zero overhead. Faiter provides simple APIs to facilitate tolerating failures for asynchronous computations. Also, Faiter  performs load balancing on recovery by re-assigning lost data onto multiple machines. 
@@ -13,7 +13,13 @@ Iterative Computations in Cloud Environments](http://dl.acm.org/citation.cfm?id=
  
 
 ##2. Quick Start
-This section describes how to configurate, compile and then deploy HybridGraph on a cluster consisting of three physical machines running Red Hat Enterprise Linux 6.4 32/64 bit (one master and two slaves/workers, called `master`, `slave1`, and `slave2`). Before that, Apache Hadoop should be installed on the cluster, which is beyond the scope of this document. 
+Before running Faiter, you need to download [faiter.tar.gz](https://github.com/HybridGraph/Faiter/blob/master/faiter.tar.gz) and deploy it. You can click [here](https://code.google.com/archive/p/maiter/wikis/Guidance.wiki) for help.
+
+PageRank and PHP, are provided as two example algorithms. Before running them, you need to split input data into multiple partitions and assign partitions onto different machines. Click [here](https://code.google.com/archive/p/maiter/wikis/Guidance.wiki) to know how to prepare input data.
+
+Then type the following command on any worker machine to run the algorithm (e.g., the SumProduct verion of Belief Propagation).
+
+"./prom --runner=SumProduct --workers=? --graph_dir=? --result_dir=? --num_nodes=? --snapshot_interval=? --portion=? --termcheck_threshold=?". Replace the question mark with your settings.
 
 ###2.1 Requirements
 * Apache hadoop-0.20.2 (distributed storage service)  
